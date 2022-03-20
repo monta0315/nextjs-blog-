@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import path from "path";
 import { remark } from "remark";
 import html from "remark-html";
-import { matterResultType } from "../types";
+import { MatterResultType } from "../types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -19,7 +19,7 @@ const getAllPostIds = () => {
   });
 };
 
-const getPostData = async (id) => {
+const getPostData = async (id: string) => {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
@@ -37,7 +37,7 @@ const getPostData = async (id) => {
   return {
     id,
     contentHTML,
-    ...(matterResult.data as matterResultType),
+    ...(matterResult.data as MatterResultType),
   };
 };
 
@@ -58,7 +58,7 @@ const getSortedPostsData = () => {
     // Combine the data with the id
     return {
       id,
-      ...(matterResult.data as matterResultType),
+      ...(matterResult.data as MatterResultType),
     };
   });
   // Sort posts by date
